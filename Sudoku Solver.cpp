@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// Prints the sudoku
 void print(int a[9][9]){
     cout << endl;
     for(int i = 0; i < 9; i++){
@@ -18,7 +19,8 @@ void print(int a[9][9]){
     cout << endl;
 }
 
-bool no_prob(int a[9][9], int row, int col, int val){
+// Checks if the number is occuring in row, column or box
+bool check(int a[9][9], int row, int col, int val){
     for(int k = 0; k < 9; k++){
         if(a[row][k] == val){
             return false;
@@ -44,7 +46,7 @@ void solve(int a[9][9]){
         for(int j = 0; j < 9; j++){
             if(a[i][j] == 0){
                 for(int k = 1; k < 10; k++){
-                    if(no_prob(a,i,j,k)){
+                    if(check(a,i,j,k)){
                         a[i][j] = k;
                         solve(a);
                     }
@@ -80,6 +82,9 @@ int main()
                     {0,0,0,0,0,0,0,0,0},
                     {0,0,0,0,0,0,0,0,0}};
 //    solve(a);
+
+    // Takes input from the user
+    // For blank box takes input as 0
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             cin >> a[i][j];
